@@ -7,7 +7,7 @@ package tp1;
 
 /**
  *
- * @author Yan Revuz
+ * @author Yan Revuz by le pc
  */
 public class Exercice2 extends javax.swing.JPanel {
 
