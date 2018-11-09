@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tp1;
 
 /**
@@ -10,9 +5,21 @@ package tp1;
  * @author Yan Revuz
  */
 public class Exercice1 extends javax.swing.JFrame {
+    //Tous les etat de notre Automate
+    public enum State {
+        INITIAL, //etat initial
+        INCREMNTE 
+    }
     
-    private String etat;
-    private int n;
+    /* Etat en cours*/
+    private State etatEnCours;
+    
+    /* Le compteur à afficher*/
+    private int valeurCompteur;
+    
+    
+    /*La valeur maximum du conpteur */
+    private static final int VALEUR_MAX_COMPTEUR = 3;
     /**
      * Creates new form Exercice1
      */
@@ -21,13 +28,54 @@ public class Exercice1 extends javax.swing.JFrame {
         init();
     }
     
+    /* Methode d'initialisation */
     public void init(){
-        start.setEnabled(true);
-        stop.setEnabled(false);
-        increment.setEnabled(false);
-        labelNb.setText("0");
-        etat = "E0";
-        n=0;
+        setEnabledStopButton(false);
+        setEnabledStartButton(true);
+        setEnabledIncrementButton(false);
+        initCompteur();
+        printCompteur();
+        changeState(State.INITIAL);
+    }
+    
+    /* Permet de desactiver / activer le boutton Stop */
+    public void setEnabledStopButton(boolean enabled){
+        this.stop.setEnabled(enabled);
+    }
+    
+    /* Permet de desactiver / activer le boutton Start */
+    public void setEnabledStartButton(boolean enabled){
+        this.start.setEnabled(enabled);
+    }
+    
+    /* Permet de desactiver / activer le boutton Increment */
+    public void setEnabledIncrementButton(boolean enabled){
+        this.increment.setEnabled(enabled);
+    }
+    
+    /* Permet de mettre le compteur à 0 */
+    public void initCompteur(){
+        this.valeurCompteur =0;
+    }
+    
+    /* Permet d'incrementer le compteur */
+    public void incrementCompteur(){
+        this.valeurCompteur++;
+    }
+    
+    /* Permet de changer la valeur du label */
+    public void printCompteur(){
+        this.compteurLabel.setText(this.valeurCompteur+"");
+    }
+    
+    /* Permet de changer la valeur du label à POUF */
+    public void printPouf(){
+        this.compteurLabel.setText("POUF");
+    }
+    
+    /* Permet de changer d'état */
+    public void changeState(State state){
+        this.etatEnCours = state;
     }
 
     /**
@@ -41,7 +89,7 @@ public class Exercice1 extends javax.swing.JFrame {
 
         start = new javax.swing.JButton();
         stop = new javax.swing.JButton();
-        labelNb = new javax.swing.JLabel();
+        compteurLabel = new javax.swing.JLabel();
         increment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +108,7 @@ public class Exercice1 extends javax.swing.JFrame {
             }
         });
 
-        labelNb.setText("0");
+        compteurLabel.setText("0");
 
         increment.setText("+1");
         increment.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +131,7 @@ public class Exercice1 extends javax.swing.JFrame {
                         .addComponent(stop, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelNb, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(compteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
@@ -96,71 +144,72 @@ public class Exercice1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(increment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelNb, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                        .addComponent(compteurLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void stateE0(){
-        etat="E0";
-        labelNb.setText("POUF");
-        start.setEnabled(true);
-        stop.setEnabled(false);
-        increment.setEnabled(false);
-    }
-    
-    public void stateE1(){
-        labelNb.setText(""+n);
-        start.setEnabled(false);
-        stop.setEnabled(true);
-        increment.setEnabled(true);
-        etat = "E1";
-    }
     
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        switch(etat){
-            case "E0":
-                n=0;
-                stateE1();
+        switch(this.etatEnCours){
+            case INITIAL:
+                initCompteur();
+                printCompteur();
+                setEnabledStartButton(false);
+                setEnabledStopButton(true);
+                setEnabledIncrementButton(true);
+                changeState(State.INCREMNTE);
                 break;
-            case "E1":
-                //Interdit
+            case INCREMNTE:
+                /* Interdit */
                 break;
             default:
-                //Interdit
+                /* Interdit */
         }
     }//GEN-LAST:event_startActionPerformed
 
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
-        switch(etat){
-            case "E0":
-                //Interdit
+        switch(this.etatEnCours){
+            case INITIAL:
+                /* Interdit */
                 break;
-            case "E1":
-                stateE0();
+            case INCREMNTE:
+                printPouf();
+                setEnabledStartButton(true);
+                setEnabledStopButton(false);
+                setEnabledIncrementButton(false);
+                changeState(State.INITIAL);
                 break;
             default:
-                //Interdit
+                /* Interdit */
         }
     }//GEN-LAST:event_stopActionPerformed
 
     private void incrementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementActionPerformed
-        switch(etat){
-            case "E0":
-                //Interdit
+        switch(this.etatEnCours){
+            case INITIAL:
+                /* Interdit */
                 break;
-            case "E1":
-                if(n<3){
-                    n++;
-                    stateE1();
-                }else if(n==3){
-                    stateE0();
+            case INCREMNTE:
+                if( this.valeurCompteur < VALEUR_MAX_COMPTEUR ){
+                    incrementCompteur();
+                    printCompteur();
+                    setEnabledStartButton(false);
+                    setEnabledStopButton(true);
+                    setEnabledIncrementButton(true);
+                    changeState(State.INCREMNTE);
+                }else if(this.valeurCompteur == VALEUR_MAX_COMPTEUR ){
+                    printPouf();
+                    setEnabledStartButton(true);
+                    setEnabledStopButton(false);
+                    setEnabledIncrementButton(false);
+                    changeState(State.INITIAL);
                 }
                 break;
             default:
-                //Interdit
+                /* Interdit */
         }
     }//GEN-LAST:event_incrementActionPerformed
 
@@ -200,8 +249,8 @@ public class Exercice1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel compteurLabel;
     private javax.swing.JButton increment;
-    private javax.swing.JLabel labelNb;
     private javax.swing.JButton start;
     private javax.swing.JButton stop;
     // End of variables declaration//GEN-END:variables

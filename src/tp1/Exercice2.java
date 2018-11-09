@@ -5,31 +5,123 @@
  */
 package tp1;
 
+import java.awt.event.*;
+import javax.swing.Timer;
 /**
  *
- * @author Yan Revuz by le pc
+ * @author Yan Revuz
  */
-public class Exercice2 extends javax.swing.JPanel {
-
-    private String etat;
-    private int n;
+public class Exercice2 extends javax.swing.JFrame {
+    
+    //Tous les etat de notre Automate
+    public enum State {
+        INITIAL, //etat initial
+        INCREMNTE 
+    }
+    
+    /* Etat en cours*/
+    private State etatEnCours;
+    
+    /* Le compteur à afficher*/
+    private int valeurCompteur;
+    
+    /* Represente la fréquence d'un tic du timer */
+    private static final int DELAY_TIMER = 10;
+    
+    /* Le timer de notre application */
+    private Timer timer;
+    
+    /*La valeur maximum du conpteur */
+    private static final int VALEUR_MAX_COMPTEUR = 300;
+    
     /**
-     * Creates new form Exercice2
+     * Creates new form Exo2
      */
     public Exercice2() {
         initComponents();
         init();
     }
     
+    /* Déclaration des action réalisées lors d'un tic du timer */
+    ActionListener taskPerformer = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+          switch(etatEnCours){
+            case INITIAL:
+                /* Interdit */
+            case INCREMNTE:
+                if (valeurCompteur < VALEUR_MAX_COMPTEUR) {
+                    incrementCompteur();
+                    printCompteur();
+                    setEnabledStartButton(false);
+                    setEnabledStopButton(true);
+                    changeState(State.INCREMNTE);
+                } else if (valeurCompteur == VALEUR_MAX_COMPTEUR) {
+                    printCompteur();
+                    startTimer();
+                    setEnabledStartButton(true);
+                    setEnabledStopButton(false);
+                    changeState(State.INITIAL);                 
+                }
+                break;
+            default:
+                /* Interdit */
+        }
+      }
+    };
+    
+    /* Methode d'initialisation */
     public void init(){
-        start.setEnabled(true);
-        stop.setEnabled(false);
-        variableLabel.setText("0");
-        etat = "E0";
-        n=0;
+        setEnabledStopButton(false);
+        setEnabledStartButton(true);
+        this.timer = new Timer(DELAY_TIMER, taskPerformer);
+        initCompteur();
+        changeState(State.INITIAL);
     }
-   
-
+    
+    /* Permet de desactiver / activer le boutton Stop */
+    public void setEnabledStopButton(boolean enabled){
+        this.stop.setEnabled(enabled);
+    }
+    
+    /* Permet de desactiver / activer le boutton Start */
+    public void setEnabledStartButton(boolean enabled){
+        this.start.setEnabled(enabled);
+    }
+    
+    /* Permet de mettre le compteur à 0 */
+    public void initCompteur(){
+        this.valeurCompteur =0;
+    }
+    
+    /* Permet d'incrementer le compteur */
+    public void incrementCompteur(){
+        this.valeurCompteur++;
+    }
+    
+    /* Permet de changer la valeur du label */
+    public void printCompteur(){
+        this.compteurLabel.setText(this.valeurCompteur+"");
+    }
+    
+    /* Permet de changer la valeur du label à POUF */
+    public void printPouf(){
+        this.compteurLabel.setText("POUF");
+    }
+    
+    /* Permet de changer d'état */
+    public void changeState(State state){
+        this.etatEnCours = state;
+    }
+    
+    /* Permet de demarrer le timer */
+    public void startTimer(){
+        this.timer.start();
+    }
+    
+    /* Permet d'interrompre le compteur */
+    public void stopTimer(){
+        this.timer.stop();
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,73 +134,130 @@ public class Exercice2 extends javax.swing.JPanel {
 
         start = new javax.swing.JButton();
         stop = new javax.swing.JButton();
-        variableLabel = new javax.swing.JLabel();
+        compteurLabel = new javax.swing.JLabel();
 
-        start.setText("Start");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        start.setText("jButton1");
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startActionPerformed(evt);
             }
         });
 
-        stop.setText("Stop");
+        stop.setText("jButton2");
         stop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopActionPerformed(evt);
             }
         });
 
-        variableLabel.setText("jLabel1");
+        compteurLabel.setText("jLabel1");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stop, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(variableLabel)
-                .addGap(167, 167, 167))
+                .addGap(65, 65, 65)
+                .addComponent(start)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(stop)
+                .addGap(90, 90, 90))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(compteurLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(start, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                    .addComponent(stop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(51, 51, 51)
-                .addComponent(variableLabel)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(start)
+                    .addComponent(stop))
+                .addGap(91, 91, 91)
+                .addComponent(compteurLabel)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        switch(etat){
-            case "E0":
-                n=0;
-                //stateE1();
+        switch(this.etatEnCours){
+            case INITIAL:
+                initCompteur();
+                printCompteur();
+                startTimer();
+                setEnabledStartButton(false);
+                setEnabledStopButton(true);
+                changeState(State.INCREMNTE);
                 break;
-            case "E1":
-                //Interdit
+            case INCREMNTE:
+                /* Interdir */
                 break;
             default:
-                //Interdit
+                /* Interdit */
         }
     }//GEN-LAST:event_startActionPerformed
 
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
-        // TODO add your handling code here:
+        switch(this.etatEnCours){
+            case INITIAL:
+                /* Interdit */
+                break;
+            case INCREMNTE:
+                printPouf();
+                stopTimer();
+                setEnabledStartButton(true);
+                setEnabledStopButton(false);
+                changeState(State.INITIAL);
+            default:
+                /* Interdit */
+        }
     }//GEN-LAST:event_stopActionPerformed
 
-   
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Exercice2().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel compteurLabel;
     private javax.swing.JButton start;
     private javax.swing.JButton stop;
-    private javax.swing.JLabel variableLabel;
     // End of variables declaration//GEN-END:variables
 }
