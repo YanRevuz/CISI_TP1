@@ -4,7 +4,7 @@ package tp1;
  *
  * @author Yan Revuz
  */
-public class Exercice1 extends javax.swing.JFrame {
+public class ExercicePoufCompteur extends javax.swing.JFrame {
     //Tous les etat de notre Automate
     public enum State {
         INITIAL, //etat initial
@@ -23,7 +23,7 @@ public class Exercice1 extends javax.swing.JFrame {
     /**
      * Creates new form Exercice1
      */
-    public Exercice1() {
+    public ExercicePoufCompteur() {
         initComponents();
         init();
     }
@@ -230,20 +230,21 @@ public class Exercice1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Exercice1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufCompteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Exercice1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufCompteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Exercice1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufCompteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Exercice1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufCompteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Exercice1().setVisible(true);
+                new ExercicePoufCompteur().setVisible(true);
             }
         });
     }

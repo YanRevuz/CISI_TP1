@@ -11,7 +11,7 @@ import javax.swing.Timer;
  *
  * @author Yan Revuz
  */
-public class Exercice2 extends javax.swing.JFrame {
+public class ExercicePoufTimer extends javax.swing.JFrame {
     
     //Tous les etat de notre Automate
     public enum State {
@@ -37,7 +37,7 @@ public class Exercice2 extends javax.swing.JFrame {
     /**
      * Creates new form Exo2
      */
-    public Exercice2() {
+    public ExercicePoufTimer() {
         initComponents();
         init();
     }
@@ -236,21 +236,23 @@ public class Exercice2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufTimer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufTimer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufTimer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Exercice2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExercicePoufTimer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Exercice2().setVisible(true);
+                new ExercicePoufTimer().setVisible(true);
             }
         });
     }
