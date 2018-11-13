@@ -6,7 +6,7 @@ package tp1;
  */
 public class ExercicePoufCompteur extends javax.swing.JFrame {
     //Tous les etat de notre Automate
-    public enum State {
+    private enum State {
         INITIAL, //etat initial
         INCREMNTE 
     }

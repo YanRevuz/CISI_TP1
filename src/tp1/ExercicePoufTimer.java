@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class ExercicePoufTimer extends javax.swing.JFrame {
     
     //Tous les etat de notre Automate
-    public enum State {
+    private enum State {
         INITIAL, //etat initial
         INCREMNTE 
     }
