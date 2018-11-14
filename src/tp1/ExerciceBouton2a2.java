@@ -21,6 +21,7 @@ public class ExerciceBouton2a2 extends javax.swing.JFrame {
         CLIQUE_B4_FIRST
     }
     
+    /* l'etat en cours */
     private State etatEnCours;
     /**
      * Creates new form ExerciceBouton2a2
