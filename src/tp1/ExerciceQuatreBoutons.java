@@ -31,11 +31,7 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
     
      /* Methode d'initialisation */
     public void init(){
-        setEnabledPrimptempsButton(true);
-        setEnabledEteButton(false);
-        setEnabledAutomneButton(false);
-        setEnabledHiverButton(false);
-        changeState(State.PRIMTEMPS);
+        primtemps();
     }
     
     /* Permet de desactiver / activer le boutton Primptemps*/
@@ -147,28 +143,28 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(boutonAutomne, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boutonPrimtemps))
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutonHiver, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(boutonEte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(boutonAutomne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutonPrimtemps, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(boutonEte, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boutonHiver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutonAutomne, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boutonPrimtemps, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boutonEte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(boutonHiver, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addComponent(boutonPrimtemps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boutonAutomne)
+                    .addComponent(boutonHiver))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,25 +188,6 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
                 /* Interdit */
         }
     }//GEN-LAST:event_boutonPrimtempsActionPerformed
-
-    private void boutonAutomneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAutomneActionPerformed
-        switch(this.etatEnCours){
-            case PRIMTEMPS:
-                /* Interdit */
-                break;
-            case ETE:
-                /* Interdit */
-                break;
-            case AUTOMNE:
-                automne();
-                break;
-            case HIVER:
-                /* Interdit */
-                break;
-            default:
-                /* Interdit */
-        }
-    }//GEN-LAST:event_boutonAutomneActionPerformed
 
     private void boutonEteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEteActionPerformed
         switch(this.etatEnCours){
@@ -249,6 +226,25 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
                 /* Interdit */
         }
     }//GEN-LAST:event_boutonHiverActionPerformed
+
+    private void boutonAutomneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAutomneActionPerformed
+        switch(this.etatEnCours){
+            case PRIMTEMPS:
+            /* Interdit */
+            break;
+            case ETE:
+            /* Interdit */
+            break;
+            case AUTOMNE:
+            automne();
+            break;
+            case HIVER:
+            /* Interdit */
+            break;
+            default:
+            /* Interdit */
+        }
+    }//GEN-LAST:event_boutonAutomneActionPerformed
 
     /**
      * @param args the command line arguments

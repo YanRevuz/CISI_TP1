@@ -24,34 +24,34 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="boutonAutomne" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="boutonPrimtemps" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="boutonHiver" pref="182" max="32767" attributes="0"/>
-                  <Component id="boutonEte" max="32767" attributes="0"/>
+                  <Component id="boutonEte" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="boutonHiver" min="-2" pref="87" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="boutonAutomne" max="32767" attributes="0"/>
-                  <Component id="boutonPrimtemps" pref="192" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="130" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="boutonAutomne" pref="133" max="32767" attributes="0"/>
-                  <Component id="boutonEte" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="boutonPrimtemps" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="boutonEte" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="boutonHiver" pref="139" max="32767" attributes="0"/>
-                  <Component id="boutonPrimtemps" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="boutonAutomne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boutonHiver" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="139" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
