@@ -64,6 +64,39 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
     }
     
     
+    public void ete(){
+        setEnabledPrimptempsButton(false);
+        setEnabledEteButton(false);
+        setEnabledAutomneButton(true);
+        setEnabledHiverButton(false);
+        changeState(State.AUTOMNE);
+    }
+    
+    public void hiver(){
+        setEnabledPrimptempsButton(true);
+        setEnabledEteButton(false);
+        setEnabledAutomneButton(false);
+        setEnabledHiverButton(false);
+        changeState(State.PRIMTEMPS);
+    }
+    
+    public void automne(){
+        setEnabledPrimptempsButton(false);
+        setEnabledEteButton(false);
+        setEnabledAutomneButton(false);
+        setEnabledHiverButton(true);
+        changeState(State.HIVER);
+    }
+    
+    public void primtemps(){
+        setEnabledPrimptempsButton(false);
+        setEnabledEteButton(true);
+        setEnabledAutomneButton(false);
+        setEnabledHiverButton(false);
+        changeState(State.ETE);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,11 +177,7 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
     private void boutonPrimtempsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonPrimtempsActionPerformed
         switch(this.etatEnCours){
             case PRIMTEMPS:
-                setEnabledPrimptempsButton(false);
-                setEnabledEteButton(true);
-                setEnabledAutomneButton(false);
-                setEnabledHiverButton(false);
-                changeState(State.ETE);
+                primtemps();
                 break;
             case ETE:
                 /* Interdit */
@@ -173,11 +202,7 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
                 /* Interdit */
                 break;
             case AUTOMNE:
-                setEnabledPrimptempsButton(false);
-                setEnabledEteButton(false);
-                setEnabledAutomneButton(false);
-                setEnabledHiverButton(true);
-                changeState(State.HIVER);
+                automne();
                 break;
             case HIVER:
                 /* Interdit */
@@ -193,11 +218,7 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
                 /* Interdit */
                 break;
             case ETE:
-                setEnabledPrimptempsButton(false);
-                setEnabledEteButton(false);
-                setEnabledAutomneButton(true);
-                setEnabledHiverButton(false);
-                changeState(State.AUTOMNE);
+                ete();
                 break;
             case AUTOMNE:
                 /* Interdit */
@@ -222,11 +243,7 @@ public class ExerciceQuatreBoutons extends javax.swing.JFrame {
                 /* Interdit */
                 break;
             case HIVER:
-                setEnabledPrimptempsButton(true);
-                setEnabledEteButton(false);
-                setEnabledAutomneButton(false);
-                setEnabledHiverButton(false);
-                changeState(State.PRIMTEMPS);
+                hiver();
                 break;
             default:
                 /* Interdit */
