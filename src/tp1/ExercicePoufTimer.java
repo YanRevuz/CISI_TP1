@@ -16,7 +16,7 @@ public class ExercicePoufTimer extends javax.swing.JFrame {
     //Tous les etat de notre Automate
     private enum State {
         INITIAL, //etat initial
-        INCREMNTE 
+        INCREMENTE 
     }
     
     /* Etat en cours*/
@@ -48,13 +48,13 @@ public class ExercicePoufTimer extends javax.swing.JFrame {
           switch(etatEnCours){
             case INITIAL:
                 /* Interdit */
-            case INCREMNTE:
+            case INCREMENTE:
                 if (valeurCompteur < VALEUR_MAX_COMPTEUR) {
                     incrementCompteur();
                     printCompteur();
                     setEnabledStartButton(false);
                     setEnabledStopButton(true);
-                    changeState(State.INCREMNTE);
+                    changeState(State.INCREMENTE);
                 } else if (valeurCompteur == VALEUR_MAX_COMPTEUR) {
                     printCompteur();
                     startTimer();
@@ -192,9 +192,9 @@ public class ExercicePoufTimer extends javax.swing.JFrame {
                 startTimer();
                 setEnabledStartButton(false);
                 setEnabledStopButton(true);
-                changeState(State.INCREMNTE);
+                changeState(State.INCREMENTE);
                 break;
-            case INCREMNTE:
+            case INCREMENTE:
                 /* Interdir */
                 break;
             default:
@@ -207,7 +207,7 @@ public class ExercicePoufTimer extends javax.swing.JFrame {
             case INITIAL:
                 /* Interdit */
                 break;
-            case INCREMNTE:
+            case INCREMENTE:
                 printPouf();
                 stopTimer();
                 setEnabledStartButton(true);
